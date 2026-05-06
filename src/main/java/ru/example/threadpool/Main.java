@@ -1,17 +1,78 @@
 package ru.example.threadpool;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        CustomThreadPool pool = new CustomThreadPool(
+                2,
+                4,
+                5,
+                TimeUnit.SECONDS,
+                5,
+                1,
+                "MyPool",
+                task -> System.out.println("[Rejected] Task " + task + " was rejected due to overload!")
+        );
+
+        System.out.println("=== Normal load demo ===");
+
+        for (int i = 1; i <= 8; i++) {
+            pool.execute(new DemoTask("normal-task-" + i, 1500));
+        }
+
+        Future<String> future = pool.submit(() -> {
+            Thread.sleep(1000);
+            return "Result from Callable task";
+        });
+
+        System.out.println("[Main] Callable result: " + future.get());
+
+        Thread.sleep(7000);
+
+        System.out.println();
+        System.out.println("=== Overload demo ===");
+
+        for (int i = 1; i <= 40; i++) {
+            pool.execute(new DemoTask("overload-task-" + i, 3000));
+        }
+
+        Thread.sleep(10000);
+
+        pool.shutdown();
+
+        Thread.sleep(7000);
+
+        System.out.println("[Main] Application finished.");
+    }
+
+    private static class DemoTask implements Runnable {
+
+        private final String name;
+        private final long workTimeMillis;
+
+        public DemoTask(String name, long workTimeMillis) {
+            this.name = name;
+            this.workTimeMillis = workTimeMillis;
+        }
+
+        @Override
+        public void run() {
+            try {
+                System.out.println("[Task] " + name + " started.");
+                Thread.sleep(workTimeMillis);
+                System.out.println("[Task] " + name + " finished.");
+            } catch (InterruptedException e) {
+                System.out.println("[Task] " + name + " interrupted.");
+                Thread.currentThread().interrupt();
+            }
+        }
+
+        @Override
+        public String toString() {
+            return name;
         }
     }
 }
