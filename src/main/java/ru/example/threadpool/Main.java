@@ -1,19 +1,20 @@
 package ru.example.threadpool;
 
 import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        ThreadPoolConfig config = ThreadPoolConfig.load("thread-pool.properties");
+
         CustomThreadPool pool = new CustomThreadPool(
-                2,
-                4,
-                5,
-                TimeUnit.SECONDS,
-                5,
-                1,
-                "MyPool",
+                config.getCorePoolSize(),
+                config.getMaxPoolSize(),
+                config.getKeepAliveTime(),
+                config.getTimeUnit(),
+                config.getQueueSize(),
+                config.getMinSpareThreads(),
+                config.getPoolName(),
                 task -> System.out.println("[Rejected] Task " + task + " was rejected due to overload!")
         );
 
@@ -43,7 +44,7 @@ public class Main {
 
         pool.shutdown();
 
-        Thread.sleep(7000);
+        Thread.sleep(15000);
 
         System.out.println("[Main] Application finished.");
     }

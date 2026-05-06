@@ -193,6 +193,7 @@ public class CustomThreadPool implements CustomExecutor {
 
         private volatile boolean running = true;
         private volatile Thread thread;
+        private volatile boolean busy = false;
 
         public Worker(int id) {
             this.id = id;
@@ -212,7 +213,7 @@ public class CustomThreadPool implements CustomExecutor {
         }
 
         public boolean isSpare() {
-            return queue.isEmpty();
+            return !busy && queue.isEmpty();
         }
 
         public void stopNow() {
@@ -254,7 +255,12 @@ public class CustomThreadPool implements CustomExecutor {
                     System.out.println("[Worker] " + Thread.currentThread().getName()
                             + " executes " + task);
 
-                    task.run();
+                    busy = true;
+                    try {
+                        task.run();
+                    } finally {
+                        busy = false;
+                    }
 
                 } catch (InterruptedException e) {
                     if (shutdown || !running) {
