@@ -21,6 +21,7 @@ public class CustomThreadPool implements CustomExecutor {
     private final Object lock = new Object();
 
     private final AtomicInteger roundRobinCounter = new AtomicInteger(0);
+    private final AtomicInteger workerIdGenerator = new AtomicInteger(1);
 
     private volatile boolean shutdown = false;
 
@@ -153,7 +154,7 @@ public class CustomThreadPool implements CustomExecutor {
     }
 
     private Worker addWorker() {
-        Worker worker = new Worker(workers.size() + 1);
+        Worker worker = new Worker(workerIdGenerator.getAndIncrement());
         workers.add(worker);
 
         Thread thread = threadFactory.newThread(worker);
@@ -247,12 +248,6 @@ public class CustomThreadPool implements CustomExecutor {
                             }
                         }
 
-                        continue;
-                    }
-
-                    if (shutdown) {
-                        System.out.println("[Worker] " + Thread.currentThread().getName()
-                                + " skipped task because pool is shutting down.");
                         continue;
                     }
 

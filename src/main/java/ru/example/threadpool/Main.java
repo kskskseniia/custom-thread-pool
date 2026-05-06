@@ -30,7 +30,7 @@ public class Main {
 
         System.out.println("[Main] Callable result: " + future.get());
 
-        Thread.sleep(7000);
+        Thread.sleep(10000);
 
         System.out.println();
         System.out.println("=== Overload demo ===");
