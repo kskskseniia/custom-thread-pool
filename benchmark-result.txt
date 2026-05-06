@@ -1,0 +1,256 @@
+[ThreadFactory] Creating new thread: MyPool-worker-1
+[ThreadFactory] Creating new thread: MyPool-worker-2
+=== Normal load demo ===
+[Pool] Task accepted into queue #1: normal-task-1
+[Pool] Task accepted into queue #2: normal-task-2
+[Pool] Task accepted into queue #1: normal-task-3
+[Pool] Task accepted into queue #2: normal-task-4
+[ThreadFactory] Creating new thread: MyPool-worker-3
+[Pool] Added spare worker #3
+[Pool] Task accepted into queue #2: normal-task-5
+[Pool] Task accepted into queue #3: normal-task-6
+[Worker] MyPool-worker-1 executes normal-task-1
+[ThreadFactory] Creating new thread: MyPool-worker-4
+[Worker] MyPool-worker-3 executes normal-task-6
+[Pool] Added spare worker #4
+[Worker] MyPool-worker-2 executes normal-task-2
+[Pool] Task accepted into queue #3: normal-task-7
+[Pool] Task accepted into queue #4: normal-task-8
+[Worker] MyPool-worker-4 executes normal-task-8
+[Pool] Task accepted into queue #1: java.util.concurrent.FutureTask@7cd84586[Not completed, task = ru.example.threadpool.Main$$Lambda$18/0x000002a10b00bc00@b1bc7ed]
+[Task] normal-task-2 started.
+[Task] normal-task-8 started.
+[Task] normal-task-1 started.
+[Task] normal-task-6 started.
+[Task] normal-task-8 finished.
+[Task] normal-task-1 finished.
+[Worker] MyPool-worker-1 executes normal-task-3
+[Task] normal-task-3 started.
+[Task] normal-task-2 finished.
+[Worker] MyPool-worker-2 executes normal-task-4
+[Task] normal-task-4 started.
+[Task] normal-task-6 finished.
+[Worker] MyPool-worker-3 executes normal-task-7
+[Task] normal-task-7 started.
+[Task] normal-task-3 finished.
+[Worker] MyPool-worker-1 executes java.util.concurrent.FutureTask@7cd84586[Not completed, task = ru.example.threadpool.Main$$Lambda$18/0x000002a10b00bc00@b1bc7ed]
+[Task] normal-task-7 finished.
+[Task] normal-task-4 finished.
+[Worker] MyPool-worker-2 executes normal-task-5
+[Task] normal-task-5 started.
+[Main] Callable result: Result from Callable task
+[Task] normal-task-5 finished.
+[Worker] MyPool-worker-4 idle timeout, stopping.
+[Worker] MyPool-worker-4 terminated.
+[ThreadFactory] Thread finished: MyPool-worker-4
+[Worker] MyPool-worker-3 idle timeout, stopping.
+[Worker] MyPool-worker-3 terminated.
+[ThreadFactory] Thread finished: MyPool-worker-3
+
+=== Overload demo ===
+[Pool] Task accepted into queue #2: overload-task-1
+[Worker] MyPool-worker-2 executes overload-task-1
+[Task] overload-task-1 started.
+[Pool] Task accepted into queue #1: overload-task-2
+[Worker] MyPool-worker-1 executes overload-task-2
+[Pool] Task accepted into queue #2: overload-task-3
+[Task] overload-task-2 started.
+[ThreadFactory] Creating new thread: MyPool-worker-5
+[Pool] Added spare worker #5
+[Pool] Task accepted into queue #1: overload-task-4
+[Pool] Task accepted into queue #2: overload-task-5
+[Pool] Task accepted into queue #5: overload-task-6
+[ThreadFactory] Creating new thread: MyPool-worker-6
+[Worker] MyPool-worker-5 executes overload-task-6
+[Task] overload-task-6 started.
+[Pool] Added spare worker #6
+[Pool] Task accepted into queue #6: overload-task-7
+[Pool] Task accepted into queue #1: overload-task-8
+[Pool] Task accepted into queue #2: overload-task-9
+[Pool] Task accepted into queue #5: overload-task-10
+[Pool] Task accepted into queue #6: overload-task-11
+[Pool] Task accepted into queue #1: overload-task-12
+[Pool] Task accepted into queue #2: overload-task-13
+[Pool] Task accepted into queue #5: overload-task-14
+[Pool] Task accepted into queue #6: overload-task-15
+[Pool] Task accepted into queue #1: overload-task-16
+[Pool] Task accepted into queue #2: overload-task-17
+[Pool] Task accepted into queue #5: overload-task-18
+[Pool] Task accepted into queue #6: overload-task-19
+[Pool] Task accepted into queue #1: overload-task-20
+[Worker] MyPool-worker-6 executes overload-task-7
+[Task] overload-task-7 started.
+[Pool] Task accepted into queue #5: overload-task-21
+[Pool] Task accepted into queue #5: overload-task-22
+[Pool] Task accepted into queue #6: overload-task-23
+[Pool] Task accepted into queue #6: overload-task-24
+[Rejected] Task overload-task-25 was rejected due to overload!
+[Rejected] Task overload-task-26 was rejected due to overload!
+[Rejected] Task overload-task-27 was rejected due to overload!
+[Rejected] Task overload-task-28 was rejected due to overload!
+[Rejected] Task overload-task-29 was rejected due to overload!
+[Rejected] Task overload-task-30 was rejected due to overload!
+[Rejected] Task overload-task-31 was rejected due to overload!
+[Rejected] Task overload-task-32 was rejected due to overload!
+[Rejected] Task overload-task-33 was rejected due to overload!
+[Rejected] Task overload-task-34 was rejected due to overload!
+[Rejected] Task overload-task-35 was rejected due to overload!
+[Rejected] Task overload-task-36 was rejected due to overload!
+[Rejected] Task overload-task-37 was rejected due to overload!
+[Rejected] Task overload-task-38 was rejected due to overload!
+[Rejected] Task overload-task-39 was rejected due to overload!
+[Rejected] Task overload-task-40 was rejected due to overload!
+[Task] overload-task-7 finished.
+[Task] overload-task-1 finished.
+[Task] overload-task-2 finished.
+[Worker] MyPool-worker-1 executes overload-task-4
+[Task] overload-task-6 finished.
+[Worker] MyPool-worker-5 executes overload-task-10
+[Task] overload-task-4 started.
+[Worker] MyPool-worker-6 executes overload-task-11
+[Worker] MyPool-worker-2 executes overload-task-3
+[Task] overload-task-3 started.
+[Task] overload-task-11 started.
+[Task] overload-task-10 started.
+[Task] overload-task-4 finished.
+[Task] overload-task-10 finished.
+[Worker] MyPool-worker-5 executes overload-task-14
+[Task] overload-task-14 started.
+[Task] overload-task-11 finished.
+[Worker] MyPool-worker-6 executes overload-task-15
+[Task] overload-task-15 started.
+[Task] overload-task-3 finished.
+[Worker] MyPool-worker-2 executes overload-task-5
+[Task] overload-task-5 started.
+[Worker] MyPool-worker-1 executes overload-task-8
+[Task] overload-task-8 started.
+[Task] overload-task-8 finished.
+[Worker] MyPool-worker-1 executes overload-task-12
+[Task] overload-task-12 started.
+[Task] overload-task-14 finished.
+[Worker] MyPool-worker-5 executes overload-task-18
+[Task] overload-task-18 started.
+[Task] overload-task-15 finished.
+[Worker] MyPool-worker-6 executes overload-task-19
+[Task] overload-task-19 started.
+[Task] overload-task-5 finished.
+[Worker] MyPool-worker-2 executes overload-task-9
+[Task] overload-task-9 started.
+[Pool] Shutdown requested.
+[Task] overload-task-12 finished.
+[Task] overload-task-18 finished.
+[Worker] MyPool-worker-5 executes overload-task-21
+[Task] overload-task-21 started.
+[Task] overload-task-19 finished.
+[Worker] MyPool-worker-6 executes overload-task-23
+[Task] overload-task-23 started.
+[Task] overload-task-9 finished.
+[Worker] MyPool-worker-1 executes overload-task-16
+[Worker] MyPool-worker-2 executes overload-task-13
+[Task] overload-task-13 started.
+[Task] overload-task-16 started.
+[Task] overload-task-13 finished.
+[Worker] MyPool-worker-2 executes overload-task-17
+[Task] overload-task-17 started.
+[Task] overload-task-21 finished.
+[Task] overload-task-16 finished.
+[Worker] MyPool-worker-1 executes overload-task-20
+[Task] overload-task-20 started.
+[Task] overload-task-23 finished.
+[Worker] MyPool-worker-6 executes overload-task-24
+[Task] overload-task-24 started.
+[Worker] MyPool-worker-5 executes overload-task-22
+[Task] overload-task-22 started.
+[Task] overload-task-17 finished.
+[Worker] MyPool-worker-2 terminated.
+[ThreadFactory] Thread finished: MyPool-worker-2
+[Task] overload-task-24 finished.
+[Worker] MyPool-worker-6 terminated.
+[ThreadFactory] Thread finished: MyPool-worker-6
+[Task] overload-task-20 finished.
+[Task] overload-task-22 finished.
+[Worker] MyPool-worker-1 terminated.
+[ThreadFactory] Thread finished: MyPool-worker-1
+[Worker] MyPool-worker-5 terminated.
+[ThreadFactory] Thread finished: MyPool-worker-5
+
+=== Performance comparison ===
+[ThreadFactory] Creating new thread: MyPoolBenchmark-worker-1
+[ThreadFactory] Creating new thread: MyPoolBenchmark-worker-2
+[Benchmark] CustomThreadPool test started.
+[Pool] Task accepted into queue #1: custom-benchmark-task-1
+[Worker] MyPoolBenchmark-worker-1 executes custom-benchmark-task-1
+[Worker] MyPoolBenchmark-worker-2 executes custom-benchmark-task-2
+[Pool] Task accepted into queue #2: custom-benchmark-task-2
+[ThreadFactory] Creating new thread: MyPoolBenchmark-worker-3
+[Pool] Added spare worker #3
+[Pool] Task accepted into queue #3: custom-benchmark-task-3
+[ThreadFactory] Creating new thread: MyPoolBenchmark-worker-4
+[Pool] Added spare worker #4
+[Pool] Task accepted into queue #4: custom-benchmark-task-4
+[Pool] Task accepted into queue #1: custom-benchmark-task-5
+[Pool] Task accepted into queue #2: custom-benchmark-task-6
+[Pool] Task accepted into queue #3: custom-benchmark-task-7
+[Pool] Task accepted into queue #4: custom-benchmark-task-8
+[Worker] MyPoolBenchmark-worker-3 executes custom-benchmark-task-3
+[Pool] Task accepted into queue #1: custom-benchmark-task-9
+[Pool] Task accepted into queue #2: custom-benchmark-task-10
+[Pool] Task accepted into queue #3: custom-benchmark-task-11
+[Pool] Task accepted into queue #4: custom-benchmark-task-12
+[Pool] Task accepted into queue #1: custom-benchmark-task-13
+[Pool] Task accepted into queue #2: custom-benchmark-task-14
+[Pool] Task accepted into queue #3: custom-benchmark-task-15
+[Pool] Task accepted into queue #4: custom-benchmark-task-16
+[Pool] Task accepted into queue #1: custom-benchmark-task-17
+[Worker] MyPoolBenchmark-worker-4 executes custom-benchmark-task-4
+[Pool] Task accepted into queue #2: custom-benchmark-task-18
+[Pool] Task accepted into queue #3: custom-benchmark-task-19
+[Pool] Task accepted into queue #4: custom-benchmark-task-20
+[Pool] Task accepted into queue #1: custom-benchmark-task-21
+[Pool] Task accepted into queue #2: custom-benchmark-task-22
+[Pool] Task accepted into queue #3: custom-benchmark-task-23
+[Pool] Task accepted into queue #4: custom-benchmark-task-24
+[Worker] MyPoolBenchmark-worker-1 executes custom-benchmark-task-5
+[Worker] MyPoolBenchmark-worker-3 executes custom-benchmark-task-7
+[Worker] MyPoolBenchmark-worker-2 executes custom-benchmark-task-6
+[Worker] MyPoolBenchmark-worker-4 executes custom-benchmark-task-8
+[Worker] MyPoolBenchmark-worker-4 executes custom-benchmark-task-12
+[Worker] MyPoolBenchmark-worker-2 executes custom-benchmark-task-10
+[Worker] MyPoolBenchmark-worker-3 executes custom-benchmark-task-11
+[Worker] MyPoolBenchmark-worker-1 executes custom-benchmark-task-9
+[Worker] MyPoolBenchmark-worker-3 executes custom-benchmark-task-15
+[Worker] MyPoolBenchmark-worker-2 executes custom-benchmark-task-14
+[Worker] MyPoolBenchmark-worker-4 executes custom-benchmark-task-16
+[Worker] MyPoolBenchmark-worker-1 executes custom-benchmark-task-13
+[Worker] MyPoolBenchmark-worker-4 executes custom-benchmark-task-20
+[Worker] MyPoolBenchmark-worker-2 executes custom-benchmark-task-18
+[Worker] MyPoolBenchmark-worker-1 executes custom-benchmark-task-17
+[Worker] MyPoolBenchmark-worker-3 executes custom-benchmark-task-19
+[Worker] MyPoolBenchmark-worker-2 executes custom-benchmark-task-22
+[Worker] MyPoolBenchmark-worker-4 executes custom-benchmark-task-24
+[Worker] MyPoolBenchmark-worker-1 executes custom-benchmark-task-21
+[Worker] MyPoolBenchmark-worker-3 executes custom-benchmark-task-23
+[Pool] Shutdown requested.
+[Benchmark] CustomThreadPool test finished.
+[Benchmark] CustomThreadPool rejected tasks: 6
+[Worker] MyPoolBenchmark-worker-2 idle timeout, stopping.
+[Worker] MyPoolBenchmark-worker-2 terminated.
+[Worker] MyPoolBenchmark-worker-4 idle timeout, stopping.
+[Worker] MyPoolBenchmark-worker-4 terminated.
+[ThreadFactory] Thread finished: MyPoolBenchmark-worker-4
+[ThreadFactory] Thread finished: MyPoolBenchmark-worker-2
+[Worker] MyPoolBenchmark-worker-3 terminated.
+[ThreadFactory] Thread finished: MyPoolBenchmark-worker-3
+[Worker] MyPoolBenchmark-worker-1 terminated.
+[ThreadFactory] Thread finished: MyPoolBenchmark-worker-1
+[Benchmark] ThreadPoolExecutor test started.
+[Benchmark] ThreadPoolExecutor test finished.
+[Benchmark] ThreadPoolExecutor rejected tasks: 6
+
+=== Benchmark result ===
+[Benchmark] CustomThreadPool time: 9046 ms
+[Benchmark] ThreadPoolExecutor time: 9069 ms
+[Benchmark] CustomThreadPool was faster by 23 ms
+[Main] Application finished.
+
+Process finished with exit code 0
